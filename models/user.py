@@ -6,12 +6,14 @@ from models import Serializrable
 class User(db.Model, Serializrable):
     __tablename__ = 'users' 
     id = db.Column(db.Integer, db.Sequence('id_seq'), primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    u_id = db.Column(db.String(32),unique = True,nullable = False)
-    u_password = db.Column(db.String(32),unique = True,nullable = False)
+    username = db.Column(db.String(80), unique=True, nullable=False) #账号
+    u_id = db.Column(db.String(32),unique = True,nullable = False)  #员工id
+    u_password = db.Column(db.String(32),unique = True,nullable = False) 
     u_authority = db.Column(db.String(256),unique = True,nullable = False)
     u_department = db.Column(db.String(32),unique = True,nullable = False)
-    is_delete = db.Column(db.Boolean())
+    u_name = db.Column(db.String(256),nullable = False)  #真实姓名
+    u_tele = db.Column(db.String(256),nullable = False)  #手机号
+    is_delete = db.Column(db.Boolean(),default=False)
     u_email = db.Column(db.String(120), unique=True, nullable=False)
 
     def __repr__(self):

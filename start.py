@@ -17,4 +17,4 @@ api.add_resource(UserList, '/users')
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=False,threaded=True)

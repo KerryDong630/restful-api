@@ -2,7 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
 import ConfigParser
 import sys, os
-
+from flask_cors import CORS
 cwd = os.path.join(os.getcwd(), sys.argv[0]) 
 root_folder = (os.path.dirname(cwd))
 
@@ -19,7 +19,12 @@ SQLALCHEMY_DATABASE_URI = 'oracle://%s:%s@%s:%s/%s' % (db_user, db_password, db_
 print(SQLALCHEMY_DATABASE_URI)
 print(db_hostname)
 #Config flask app
+
 app = Flask(__name__)
+# app.config.update(RESTFUL_JSON=dict(ensure_ascii=False))
+
+CORS(app, supports_credentials=True)
+
 # Connect oracle://scott:tiger@127.0.0.1:1521/sidname
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
 #app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
